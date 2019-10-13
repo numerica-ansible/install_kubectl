@@ -1,12 +1,10 @@
 ---
 # tasks file for sys.set_credentials
 - name: Synchronize files between the master
-
   synchronize:
     src: /home/{{ ansible_user }}/.kube/config
     dest: /home/{{ ansible_user }}/.kube/config
-    mode: pull
-    set_remote_user: true
+    mode: push
   delegate_to: master
 - name: Ensure alias is present
   lineinfile:
