@@ -6,7 +6,7 @@
     src: /home/{{ ansible_user }}/.kube/config
     dest: /home/{{ ansible_user }}/.kube/config
     mode: pull
-    set_remote_user: root
+    set_remote_user: true
   delegate_to: master
 - name: Ensure alias is present
   lineinfile:
