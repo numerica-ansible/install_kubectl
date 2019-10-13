@@ -6,6 +6,7 @@
   get_url:
     url:  https://storage.googleapis.com/kubernetes-release/release/v1.16.0/bin/linux/amd64/kubectl
     dest: /home/{{ ansible_user }}
+    mode: 0755
 - name: move it to /usr/local/bin
   command: mv /home/{{ansible_user}}/kubectl /usr/local/bin
 
