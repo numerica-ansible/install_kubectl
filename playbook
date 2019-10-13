@@ -1,5 +1,6 @@
 ---
 - hosts: master
+  become: true
   tasks:
     - name: copy master admin.conf to ansible controller
       get_url:
