@@ -1,11 +1,11 @@
 ---
 # tasks file for sys.set_credentials
 - name: Synchronzie files
-    synchronize:
-      src: /home/{{ ansible_user }}/.kube/config
-      dest: /home/{{ ansible_user }}/.kube/config
-      mode: push
-    delegate: master
+  synchronize:
+    src: /home/{{ ansible_user }}/.kube/config
+    dest: /home/{{ ansible_user }}/.kube/config
+    mode: push
+  delegate: master
 - name: Ensure alias is present
   lineinfile:
     dest: /home/{{ ansible_user }}/.bashrc
