@@ -1,5 +1,5 @@
 ---
-- name: Install Postgresql
+- name: Install kubectl
   hosts:  client
   become: true
   gather_facts: True

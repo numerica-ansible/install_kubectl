@@ -4,7 +4,7 @@
   synchronize:
     src: /home/{{ ansible_user }}/.kube/config
     dest: /home/{{ ansible_user }}/.kube/config
-    mode: pull
+    mode: push
   delegate_to: master
 - name: Ensure alias is present
   lineinfile:
