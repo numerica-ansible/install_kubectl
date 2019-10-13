@@ -9,10 +9,10 @@
 - name: Ensure alias is present
   lineinfile:
     dest=/home/{{ ansible_user }}/.bashrc
-    line: "alias k='kubectl'
+    line: "alias k='kubectl'"
     state: present
 - name: Ensure completion is present
   lineinfile:
-    dest=/home/{{ ansible_user }}/.bashrc
-    line: "source <( kubectl completion bash) | sed s/kubectl/k/g )
+    dest: /home/{{ ansible_user }}/.bashrc
+    line: "source <( kubectl completion bash) | sed s/kubectl/k/g )"
     state: present

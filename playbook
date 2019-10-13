@@ -9,4 +9,4 @@
   roles:
     - { role:  sys.kubectl_el, when: ansible_distribution == 'CentOS'}
     - { role:  sys.kubectl_ubuntu, when: ansible_distribution == 'Ubuntu'}
-    - { role:  sys.set_credentials, tags: set-credential }
+    - { role:  sys.set_credentials, tags: set-credentials }
