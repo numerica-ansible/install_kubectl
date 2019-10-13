@@ -5,7 +5,7 @@
     src: /home/{{ ansible_user }}/.kube/config
     dest: /home/{{ ansible_user }}/.kube/config
     mode: push
-  delegate: master
+  delegate_to: master
 - name: Ensure alias is present
   lineinfile:
     dest: /home/{{ ansible_user }}/.bashrc
