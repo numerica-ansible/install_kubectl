@@ -1,6 +1,5 @@
 ---
-- name: Install kubectl
-  hosts:  client
+- hosts:  client
   become: true
   gather_facts: True
   gather_subset:
@@ -8,7 +7,31 @@
     - virtual
   roles:
     - { role:  sys.kubectl_el, when: ansible_distribution == 'CentOS'}
-    - { role:  sys.kubectl_ubuntu, when: ansible_distribution == 'Ubuntu'}
-    - { role:  sys.set_credentials, tags: 'set-credentials' }
+    - { role: sys.kubectl_ubuntu, when: ansible_distribution == 'Ubuntu'}
+
+- host: master
+  tasks:
+    - name: copy master admin.conf to ansible controller
+      get_url:
+        url: file:///etc/kubernetes/admin.conf
+        dest: /home/{{ansible_user}}/.kube/config
+    - name: Fetch the file from master to the ansible controller
+      run_once: yes
+      fetch: src=/etc/kubernetes/admin.conf dest=/tmp/admin.conf flat=yes
+
+- hosts: client
+  tasks:
+    - name: Copy config file from ansible controller to all nodes
+      copy: src=/tmp/admin.conf dest=/home/{{ansible_user}}/.kube/config
+    - name: Ensure alias is present
+      lineinfile:
+        dest: /home/{{ ansible_user }}/.bashrc
+        line: "alias k='kubectl'"
+        state: present
+    - name: Ensure completion is present
+      lineinfile:
+        dest: /home/{{ ansible_user }}/.bashrc
+        line: "source <( kubectl completion bash) | sed s/kubectl/k/g )"
+        state: present
 
 
