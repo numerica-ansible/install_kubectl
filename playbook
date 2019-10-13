@@ -13,7 +13,7 @@
 - hosts: client
   roles:
    - { role: sys.kubectl_el, when: ansible_distribution == 'CentOS'}
-   - { role: sys.kubectl_ubuntu, when: ansible_distribution == 'Ubuntu'}
+   - { role: sys.kubectl_ubuntu, become: true,  when: ansible_distribution == 'Ubuntu'}
   tasks:
     - name: Create directory
       file:
