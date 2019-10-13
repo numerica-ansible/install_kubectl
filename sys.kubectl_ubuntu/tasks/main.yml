@@ -1,2 +1,12 @@
 ---
 # tasks file for sys.kubectl_ubuntu
+
+- name: apt get update cache
+  apt: update_cache=yes
+- name: apt upgrade
+  apt: name='*' state=latest
+- name: install kubelet
+  apt:
+    name: kubelet
+    state: present
+    update_cache: yes

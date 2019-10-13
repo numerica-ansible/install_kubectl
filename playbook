@@ -11,6 +11,9 @@
       fetch: src=/etc/kubernetes/admin.conf dest=/tmp/admin.conf flat=yes
 
 - hosts: client
+  roles:
+   - { role: sys.kubectl_el, when: ansible_distribution == 'CentOS'}
+   - { role: sys.kubectl_ubuntu, when: ansible_distribution == 'Ubuntu'}
   tasks:
     - name: Create directory
       file:
@@ -29,5 +32,6 @@
         dest: /home/{{ ansible_user }}/.bashrc
         line: "source <( kubectl completion bash | sed s/kubectl/k/g )"
         state: present
+    - roles:
 
 
