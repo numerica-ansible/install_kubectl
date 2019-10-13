@@ -10,3 +10,4 @@
 - name: move it to /usr/local/bin
   command: mv /home/{{ansible_user}}/kubectl /usr/local/bin
 
+
