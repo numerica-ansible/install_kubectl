@@ -1,12 +1,16 @@
 ---
-# tasks file for sys.set_credentials
-- name: Synchronize files between the master
-  become: true
-  synchronize:
-    src: /home/{{ ansible_user }}/.kube/config
-    dest: /home/{{ ansible_user }}/.kube/config
-    mode: pull
-  delegate_to: master
+- hosts: master
+- name: copy master admin.conf to ansible controller
+  get_url:
+    url: file:///etc/kubernetes/admin.conf
+    dest: /home/{{ansible_user}}/.kube/config
+- name: Fetch the file from master to the ansible controller
+  run_once: yes
+  fetch: src=/etc/kubernetes/admin.conf dest=/tmp/admin.conf flat=yes
+
+- hosts: client
+- name: Copy config file from ansible controller to all nodes
+  copy: src=/tmp/admin.conf dest=/home/{{ansible_user}}/.kube/config
 - name: Ensure alias is present
   lineinfile:
     dest: /home/{{ ansible_user }}/.bashrc
