@@ -12,6 +12,11 @@
 
 - hosts: client
   tasks:
+    - name: Create directory
+      file:
+        path: /home/{{ ansible_user }}/.kube
+        state: directory
+        mode: '0775'
     - name: Copy config file from ansible controller to all nodes
       copy: src=/tmp/admin.conf dest=/home/{{ansible_user}}/.kube/config
     - name: Ensure alias is present
