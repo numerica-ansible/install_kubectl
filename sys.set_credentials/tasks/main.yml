@@ -8,7 +8,7 @@
     delegate: master
 - name: Ensure alias is present
   lineinfile:
-    dest=/home/{{ ansible_user }}/.bashrc
+    dest: /home/{{ ansible_user }}/.bashrc
     line: "alias k='kubectl'"
     state: present
 - name: Ensure completion is present
