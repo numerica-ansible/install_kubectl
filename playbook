@@ -9,7 +9,7 @@
     - { role:  sys.kubectl_el, when: ansible_distribution == 'CentOS'}
     - { role: sys.kubectl_ubuntu, when: ansible_distribution == 'Ubuntu'}
 
-- host: master
+- hosts: master
   tasks:
     - name: copy master admin.conf to ansible controller
       get_url:
