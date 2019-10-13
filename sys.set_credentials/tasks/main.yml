@@ -1,0 +1,18 @@
+---
+# tasks file for sys.set_credentials
+- name:
+    sychronize:
+      src: /home/{{ ansible_user }}/.kube/config
+      dest: /home/{{ ansible_user }}/.kube/config
+      mode: push
+    delegate: master
+- name: Ensure alias is present
+  lineinfile:
+    dest=/home/{{ ansible_user }}/.bashrc
+    line: "alias k='kubectl'
+    state: present
+- name: Ensure completion is present
+  lineinfile:
+    dest=/home/{{ ansible_user }}/.bashrc
+    line: "source <( kubectl completion bash) | sed s/kubectl/k/g )
+    state: present
