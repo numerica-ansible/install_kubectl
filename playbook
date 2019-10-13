@@ -27,7 +27,7 @@
     - name: Ensure completion is present
       lineinfile:
         dest: /home/{{ ansible_user }}/.bashrc
-        line: "source <( kubectl completion bash) | sed s/kubectl/k/g )"
+        line: "source <( kubectl completion bash | sed s/kubectl/k/g )"
         state: present
 
 
