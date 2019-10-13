@@ -1,7 +1,7 @@
 ---
 # tasks file for sys.kubectl_el
 - name: Update Packages
-  yum: name=* state=latest
+  dnf: name=* state=latest
 - name: Get the latest kubectl binary
   get_url:
     url:  https://storage.googleapis.com/kubernetes-release/release/v1.16.0/bin/linux/amd64/kubectl

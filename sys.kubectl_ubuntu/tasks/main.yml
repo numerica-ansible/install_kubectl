@@ -5,8 +5,8 @@
   apt: update_cache=yes
 - name: apt upgrade
   apt: name='*' state=latest
-- name: install kubelet
+- name: install kubectl
   apt:
-    name: kubelet
+    name: kubectl
     state: present
     update_cache: yes
