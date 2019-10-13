@@ -10,7 +10,7 @@
                dest=/etc/apt/sources.list.d/kubernetes.list
                line="deb http://apt.kubernetes.io/ kubernetes-xenial main"
 - name: get depo key
-  shell:  curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+  shell:  curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 - name: install kubectl
   apt:
     name: kubectl
