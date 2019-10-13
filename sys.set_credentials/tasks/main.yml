@@ -1,7 +1,7 @@
 ---
 # tasks file for sys.set_credentials
-- name: Sychronzie files
-    sychronize:
+- name: Synchronzie files
+    synchronize:
       src: /home/{{ ansible_user }}/.kube/config
       dest: /home/{{ ansible_user }}/.kube/config
       mode: push
