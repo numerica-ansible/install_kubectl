@@ -1,14 +1,4 @@
 ---
-- hosts:  client
-  become: true
-  gather_facts: True
-  gather_subset:
-    - network
-    - virtual
-  roles:
-    - { role:  sys.kubectl_el, when: ansible_distribution == 'CentOS'}
-    - { role: sys.kubectl_ubuntu, when: ansible_distribution == 'Ubuntu'}
-
 - hosts: master
   tasks:
     - name: copy master admin.conf to ansible controller
